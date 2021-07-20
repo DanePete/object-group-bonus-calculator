@@ -36,14 +36,57 @@ function ourEmployeeFunction(empName) {
   for (employeeIndex of employees) {
     // If statement to check if input parameter matches employee
     if (employeeIndex.name === empName) {
-      console.log('found employee', employeeIndex.name);
-    } else {
-      console.log('no dice');
+      // create new object
+      let newObj = {
+        name: empName,
+        bonusPercentage: bonusCalc(employeeIndex),
+        totalCompensation: empName,
+        totalBonus: empName    
+      }
+      return newObj;
     }
   }
 }
 
-ourEmployeeFunction('Jem');
+//Bonus Calc
+
+function bonusCalc(employeeIndex) {
+  // let baseBonus = 0;
+  
+
+  if (employeeIndex.reviewRating < 2 ) {
+    baseBonus = 1.0;
+    return employeeIndex.annualSalary * baseBonus;
+  }
+  if (employeeIndex.reviewRating === 3 ) {
+    baseBonus = 1.04;
+    return employeeIndex.annualSalary * baseBonus;
+  }
+  if (employeeIndex.reviewRating === 4 ) {
+    baseBonus = 1.06;
+    return employeeIndex.annualSalary * baseBonus;
+  }
+  if (employeeIndex.reviewRating === 5 ) {
+    baseBonus = 1.1;
+    return employeeIndex.annualSalary * baseBonus;
+  }
+}
+
+// Those who have a rating of a 2 or below should not receive a bonus.
+// Those who have a rating of a 3 should receive a base bonus of 4% of their base annual income.
+// Those who have a rating of a 4 should receive a base bonus of 6% of their base annual income.
+// Those who have a rating of a 5 should receive a base bonus of 10% of their base annual income.
+
+
+
+
+// If their employee number is 4 digits long, this means they have been with the company for longer than 15 years, and should receive an additional 5%.
+// However, if their annual income is greater than $65,000, they should have their bonus adjusted down 1%.
+// No bonus can be above 13% or below 0% total.
+
+
+
+console.log("console log test", ourEmployeeFunction('Jem'));
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
