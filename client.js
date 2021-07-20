@@ -14,8 +14,9 @@ function empNameAssigner () {
   let empBonusPercent = $('#bonusPercent');
   let empTotalComp = $('#totalComp');
   let empTotalBonus = $('#totalBonus');
+  emptyValues();
   empNameId.append('Employee Name: ', employeeDetails.name);
-  empBonusPercent.append('Employee Bonus Percent: ', employeeDetails.bonusPercentage);
+  empBonusPercent.append('Employee Bonus Percent: ', parseFloat((employeeDetails.bonusPercentage - 1)).toFixed(2));
   empTotalComp.append('Employee Total Compensation: ', employeeDetails.totalCompensation);
   empTotalBonus.append('Employee Total Bonus ', employeeDetails.totalBonus);
 }
@@ -52,6 +53,17 @@ const employees = [
     reviewRating: 1
   }
 ];
+
+/**
+ * Clear out Fields
+*/
+function emptyValues() {
+  $('#empName').empty();
+  $('#employeeName').empty();
+  $('#bonusPercent').empty();
+  $('#totalComp').empty();
+  $('#totalBonus').empty();
+}
 
 function ourEmployeeFunction(empName) {
   //start iteration for if statement to validate
