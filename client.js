@@ -31,6 +31,20 @@ const employees = [
   }
 ];
 
+function ourEmployeeFunction(empName) {
+  //start iteration for if statement to validate
+  for (employeeIndex of employees) {
+    // If statement to check if input parameter matches employee
+    if (employeeIndex.name === empName) {
+      console.log('found employee', employeeIndex.name);
+    } else {
+      console.log('no dice');
+    }
+  }
+}
+
+ourEmployeeFunction('Jem');
+
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
 // Take small steps! Don't write a for loop and two functions that do all of the calculations right away.
