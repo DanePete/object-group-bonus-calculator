@@ -39,54 +39,153 @@ function ourEmployeeFunction(empName) {
       // create new object
       let newObj = {
         name: empName,
-        bonusPercentage: bonusCalc(employeeIndex),
-        totalCompensation: empName,
-        totalBonus: empName    
+        bonusPercentage: percCalc(employeeIndex),
+        totalCompensation: ( percCalc(employeeIndex) * employeeIndex.annualSalary ),
+        totalBonus: Math.round(( (percCalc(employeeIndex) - 1) * employeeIndex.annualSalary ))
       }
       return newObj;
     }
   }
 }
 
-//Bonus Calc
+//Bonus Percent Calc
 
-function bonusCalc(employeeIndex) {
+function percCalc(employeeIndex) {
   // let baseBonus = 0;
-  
 
   if (employeeIndex.reviewRating < 2 ) {
     baseBonus = 1.0;
-    return employeeIndex.annualSalary * baseBonus;
+    if (employeeIndex.employeeNumber.length === 4) {
+      baseBonus += .05;
+    }
+    //Salary check to decrease 1%
+    if (parseInt(employeeIndex.annualSalary) > 65000) {
+      baseBonus -= .01;
+    }
+
+    return parseFloat(baseBonus);
   }
   if (employeeIndex.reviewRating === 3 ) {
     baseBonus = 1.04;
-    return employeeIndex.annualSalary * baseBonus;
+    if (employeeIndex.employeeNumber.length === 4) {
+      baseBonus += .05;
+    }
+    //Salary check to decrease 1%
+    if (parseInt(employeeIndex.annualSalary) > 65000) {
+      baseBonus -= .01;
+    }
+
+    return parseFloat(baseBonus);
   }
   if (employeeIndex.reviewRating === 4 ) {
     baseBonus = 1.06;
-    return employeeIndex.annualSalary * baseBonus;
+    if (employeeIndex.employeeNumber.length === 4) {
+      baseBonus += .05;
+    }
+    //Salary check to decrease 1%
+    if (parseInt(employeeIndex.annualSalary) > 65000) {
+      baseBonus -= .01;
+    }
+    //Check base bonus is in acceptable range
+    if (baseBonus > 1.13) {
+      baseBonus = 1.12;
+    }
+
+    return parseFloat(baseBonus);
   }
   if (employeeIndex.reviewRating === 5 ) {
     baseBonus = 1.1;
-    return employeeIndex.annualSalary * baseBonus;
+    if (employeeIndex.employeeNumber.length === 4) {
+      baseBonus += .05;
+    }
+    //Salary check to decrease 1%
+    if (parseInt(employeeIndex.annualSalary) > 65000) {
+      baseBonus -= .01;
+    }
+
+    //Check base bonus is in acceptable range
+    if (baseBonus > 1.13) {
+      baseBonus = 1.12;
+    }
+
+    let test = parseFloat(baseBonus);
+    
+    return test;
   }
 }
 
-// Those who have a rating of a 2 or below should not receive a bonus.
-// Those who have a rating of a 3 should receive a base bonus of 4% of their base annual income.
-// Those who have a rating of a 4 should receive a base bonus of 6% of their base annual income.
-// Those who have a rating of a 5 should receive a base bonus of 10% of their base annual income.
+
+
+//Bonus Calc
+
+// function bonusCalc(employeeIndex) {
+//   // let baseBonus = 0;
+
+//   if (employeeIndex.reviewRating < 2 ) {
+//     baseBonus = 1.0;
+//     if (employeeIndex.employeeNumber.length === 4) {
+//       baseBonus += .05;
+//     }
+//     //Salary check to decrease 1%
+//     if (parseInt(employeeIndex.annualSalary) > 65000) {
+//       baseBonus -= .01;
+//     }
+
+//     return parseInt(employeeIndex.annualSalary * baseBonus);
+//   }
+//   if (employeeIndex.reviewRating === 3 ) {
+//     baseBonus = 1.04;
+//     if (employeeIndex.employeeNumber.length === 4) {
+//       baseBonus += .05;
+//     }
+//     //Salary check to decrease 1%
+//     if (parseInt(employeeIndex.annualSalary) > 65000) {
+//       baseBonus -= .01;
+//     }
+
+//     return parseInt(employeeIndex.annualSalary * baseBonus);
+//   }
+//   if (employeeIndex.reviewRating === 4 ) {
+//     baseBonus = 1.06;
+//     if (employeeIndex.employeeNumber.length === 4) {
+//       baseBonus += .05;
+//     }
+//     //Salary check to decrease 1%
+//     if (parseInt(employeeIndex.annualSalary) > 65000) {
+//       baseBonus -= .01;
+//     }
+//     //Check base bonus is in acceptable range
+//     if (baseBonus > .13) {
+//       baseBonus = .12;
+//     }
+
+//     return parseInt(employeeIndex.annualSalary * baseBonus);
+//   }
+//   if (employeeIndex.reviewRating === 5 ) {
+//     baseBonus = 1.1;
+//     if (employeeIndex.employeeNumber.length === 4) {
+//       baseBonus += .05;
+//     }
+//     //Salary check to decrease 1%
+//     if (parseInt(employeeIndex.annualSalary) > 65000) {
+//       baseBonus -= .01;
+//     }
+
+//     //Check base bonus is in acceptable range
+//     if (baseBonus > .13) {
+//       baseBonus = .12;
+//     }
+
+//     return parseInt(employeeIndex.annualSalary * baseBonus);
+//   }
+// }
 
 
 
 
-// If their employee number is 4 digits long, this means they have been with the company for longer than 15 years, and should receive an additional 5%.
-// However, if their annual income is greater than $65,000, they should have their bonus adjusted down 1%.
-// No bonus can be above 13% or below 0% total.
 
 
-
-console.log("console log test", ourEmployeeFunction('Jem'));
+console.log("console log test", ourEmployeeFunction('Scout'));
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
