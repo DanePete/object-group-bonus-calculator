@@ -1,3 +1,25 @@
+let daEmployee = "";
+
+$(document).ready(weReady);
+
+function weReady() {
+  console.log("jQuery is working")
+  $('#checkEmpButton').on('click', empNameAssigner);
+}
+
+function empNameAssigner () {
+  daEmployee = $('#empName').val();
+  let employeeDetails = ourEmployeeFunction(daEmployee);
+  let empNameId = $('#employeeName');
+  let empBonusPercent = $('#bonusPercent');
+  let empTotalComp = $('#totalComp');
+  let empTotalBonus = $('#totalBonus');
+  empNameId.append('Employee Name: ', employeeDetails.name);
+  empBonusPercent.append('Employee Bonus Percent: ', employeeDetails.bonusPercentage);
+  empTotalComp.append('Employee Total Compensation: ', employeeDetails.totalCompensation);
+  empTotalBonus.append('Employee Total Bonus ', employeeDetails.totalBonus);
+}
+
 const employees = [
   {
     name: 'Atticus',
@@ -113,79 +135,6 @@ function percCalc(employeeIndex) {
     return test;
   }
 }
-
-
-
-//Bonus Calc
-
-// function bonusCalc(employeeIndex) {
-//   // let baseBonus = 0;
-
-//   if (employeeIndex.reviewRating < 2 ) {
-//     baseBonus = 1.0;
-//     if (employeeIndex.employeeNumber.length === 4) {
-//       baseBonus += .05;
-//     }
-//     //Salary check to decrease 1%
-//     if (parseInt(employeeIndex.annualSalary) > 65000) {
-//       baseBonus -= .01;
-//     }
-
-//     return parseInt(employeeIndex.annualSalary * baseBonus);
-//   }
-//   if (employeeIndex.reviewRating === 3 ) {
-//     baseBonus = 1.04;
-//     if (employeeIndex.employeeNumber.length === 4) {
-//       baseBonus += .05;
-//     }
-//     //Salary check to decrease 1%
-//     if (parseInt(employeeIndex.annualSalary) > 65000) {
-//       baseBonus -= .01;
-//     }
-
-//     return parseInt(employeeIndex.annualSalary * baseBonus);
-//   }
-//   if (employeeIndex.reviewRating === 4 ) {
-//     baseBonus = 1.06;
-//     if (employeeIndex.employeeNumber.length === 4) {
-//       baseBonus += .05;
-//     }
-//     //Salary check to decrease 1%
-//     if (parseInt(employeeIndex.annualSalary) > 65000) {
-//       baseBonus -= .01;
-//     }
-//     //Check base bonus is in acceptable range
-//     if (baseBonus > .13) {
-//       baseBonus = .12;
-//     }
-
-//     return parseInt(employeeIndex.annualSalary * baseBonus);
-//   }
-//   if (employeeIndex.reviewRating === 5 ) {
-//     baseBonus = 1.1;
-//     if (employeeIndex.employeeNumber.length === 4) {
-//       baseBonus += .05;
-//     }
-//     //Salary check to decrease 1%
-//     if (parseInt(employeeIndex.annualSalary) > 65000) {
-//       baseBonus -= .01;
-//     }
-
-//     //Check base bonus is in acceptable range
-//     if (baseBonus > .13) {
-//       baseBonus = .12;
-//     }
-
-//     return parseInt(employeeIndex.annualSalary * baseBonus);
-//   }
-// }
-
-
-
-
-
-
-console.log("console log test", ourEmployeeFunction('Scout'));
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
